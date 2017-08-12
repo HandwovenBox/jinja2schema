@@ -494,10 +494,10 @@ def visit_filter(ast, ctx, macroses=None, config=default_config):
                                                                                     order_nr=config.ORDER_OBJECT.get_next())),
                                            macroses, config=config)
         return rtype, merge(struct, arg_struct)
-    elif ast.name in ('first', 'last', 'random', 'length', 'sum'):
+    elif ast.name in ('first', 'last', 'random', 'length', 'count', 'sum'):
         if ast.name in ('first', 'last', 'random'):
             el_struct = ctx.get_predicted_struct()
-        elif ast.name == 'length':
+        elif ast.name in ('length', 'count'):
             ctx.meet(Scalar(), ast)
             return_struct_cls = Number
             el_struct = Unknown()
